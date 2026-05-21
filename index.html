@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel Casadevall — Pipeline TD</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/gradient.css">
+</head>
+
+<body>
+
+    <!-- projectinfo.html will be injected here via JS -->
+
+    <header>
+        <div class="noisy-gradient-bar" style="height: 4px;"></div>
+        <div class="subdiv">
+            <nav>
+                <a href="#" class="active" onclick="showSection('reel',this)">Reel</a>
+                <a href="#" onclick="showSection('projects',this)">Projects</a>
+            </nav>
+            <div class="name-block">
+                <h1 style="display: none;">Daniel Casadevall</h1> <img src="assets/logo.png" alt="Daniel Casadevall" class="logo">
+                <div class="subtitle">Pipeline Technical Director · VFX & Animation</div>
+            </div>
+            <nav>
+                <a href="#" onclick="showSection('about',this)">About</a>
+                <a href="#" onclick="showSection('contact',this)">Contact</a>
+            </nav>
+        </div>
+        <div class="noisy-gradient-bar"></div>
+    </header>
+
+
+    <!-- REEL -->
+    <section id="reel" class="active">
+        <div class="hero">
+            <div class="main-label"> PIPELINE TD - AI IMPLEMENTATION focused on animation</div>
+            <div class="hero-label">Demo Reel — 2026</div>
+            <div class="reel-frame">
+                <!-- Replace src with actual YouTube/Vimeo embed or video file -->
+                <!-- <iframe width="100%" height="100%" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe> -->
+                <div class="reel-placeholder">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                        <circle cx="28" cy="28" r="27" stroke="#b8d4e8" stroke-width="1.5" />
+                        <polygon points="22,18 42,28 22,38" fill="#b8d4e8" />
+                    </svg>
+                    <p>Add your reel URL here</p>
+                </div>
+            </div>
+        </div>
+        <div class="focus-grid">
+            <a class="focus-cell border-right hover-fill-right" style="text-decoration: none;" href="assets/cv/CV-DanielCasadevall.pdf"                target="_blank">
+                <div class="focus-label">More information: </div>
+                <div class="focus-value">CV >></div>
+            </a>
+            <a class="focus-cell border-right hover-fill-right" href="#projects"                onclick="return showSection('projects', document.querySelectorAll('nav a')[1])" style="text-decoration: none;">
+                <div class="focus-label">Projects: </div>
+                <div class="focus-value">PROJECTS >></div>
+            </a>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+        <div class="projects-section">
+            <div class="section-header">
+                <h2>Selected Projects</h2>
+                <span>6 projects · 2022 – 2026</span>
+            </div>
+            <div class="projects-grid" id="projects-grid"></div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="section-header">
+            <h2>About</h2>
+            <span> · Barcelona · </span>
+        </div>
+        <div class="about-section">
+            <div class="about-left">
+                <h2>Pipeline<br>Technical<br>Director</h2>
+
+            </div>
+            <div class="about-right">
+                <p>Pipeline TD student with a dual background in software development and technical art. Focused on
+                    automating production pipelines, optimizing DCC workflows, and eliminating technical bottlenecks to
+                    empower artists.</p>
+                <p style="margin-top:1rem;">Currently researching production-side AI implementations: CUDA optimization,
+                    model quantization, and localized diffusion pipelines. Passionate about bridging advanced data
+                    engineering and creative visual production.</p>
+                <p style="margin-top:1rem;">Studying Animation & VFX at La Salle Bonanova University, Barcelona.
+                    Expected graduation 2027.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="section-header">
+            <h2>Contact</h2>
+            <span>Available for internships · 2026</span>
+        </div>
+        <div class="contact-new-layout">
+            <div class="big-links-container">
+                <a href="mailto:dani.casadevall@gmail.com" class="big-link" data-url="dani.casadevall@gmail.com">EMAIL</a>
+                <a href="https://github.com/danicasjau" target="_blank" class="big-link" data-url="github.com/danicasjau">GITHUB</a>
+                <a href="https://linkedin.com/in/danielcasadevall" target="_blank" class="big-link" data-url="linkedin.com/in/danielcasadevall">LINKEDIN</a>
+                <a href="https://instagram.com/dani.casadevall_" target="_blank" class="big-link" data-url="instagram.com/dani.casadevall">INSTAGRAM</a>
+                <a href="https://danielcasadevall.com" target="_blank" class="big-link" data-url="danielcasadevall.com">WEB</a>
+            </div>
+            
+            <div class="about-info-container">
+                <div class="about-box">
+                    <h3>About me</h3>
+                    <p>Pipeline TD student based in Barcelona, currently in my final years of Animation & VFX at La Salle Bonanova. I build tools that make artists' lives easier — from USD asset pipelines to AI-driven texturing systems.</p>
+                    <p>I'm actively looking for Pipeline TD internships in animation and VFX studios. I work well in team production environments and thrive on solving the technical problems that nobody else wants to touch.</p>
+                    <p>I speak Catalan, Spanish, Finnish, and English, and I'm open to remote work or relocation within Europe.</p>
+                </div>
+                <div class="info-box">
+                    <h3>Info</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Daniel Casadevall Jauhiainen · Barcelona</p>
+        <p>© 2026</p>
+    </footer>
+
+    <script src="js/info.js"></script>
+    <script src="js/script.js" defer></script>
+</body>
+
+</html>
