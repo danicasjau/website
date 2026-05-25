@@ -113,11 +113,11 @@ nav a {
     text-align: center;
     justify-content: center;
     transition: background 0.15s, font-size 0.3s ease-in-out, width 0.3s ease-in-out, padding 0.3s ease-in-out;
-    background-color: var(--yellow);
+    background-color: var(--blue);
 }
 
 nav a:hover {
-    background: var(--blue);
+    background: var(--blue-soft);
 }
 
 nav a.active {
@@ -152,6 +152,7 @@ header.scrolled .name-block img {
 header.scrolled .name-block .subtitle {
     font-size: 9px;
     margin-top: 1px;
+    display: none;
 }
 
 header.scrolled nav a {
@@ -579,6 +580,7 @@ section.active {
     object-fit: cover;
     opacity: 0.85;
     display: block;
+    pointer-events: none;
 }
 
 .detail-img-ph {
@@ -627,7 +629,7 @@ section.active {
 }
 
 .sidebar-block p {
-    font-size: 13px;
+    font-size: 24px;
     color: #444;
     line-height: 1.6;
 }
