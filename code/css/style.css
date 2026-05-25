@@ -1,12 +1,12 @@
 :root {
     --black: #0a0a0a;
     --white: #1d1d1d;
-    --blue: #b4bec7;
+    --blue: #b3d1eb;
     --blue-mid: #7aafcc;
     --blue-dark: #2a6a8a;
     --gray: #c8c8c2;
     --border: 1.5px solid #0a0a0a;
-    --blue-soft: rgba(221, 238, 250, 1);
+    --blue-soft: rgb(133, 204, 255);
     --yellow: #dae5ec;
     --header: #ebebeb;
     --lwhite: #ebecf1;
@@ -186,11 +186,12 @@ section.active {
 
 .hero-label {
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
+    font-size: 16px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--blue-dark);
     margin-bottom: 1.5rem;
+    padding-top: 20px;
 }
 
 .reel-frame {
@@ -280,7 +281,7 @@ section.active {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 2.8rem;
     letter-spacing: 0.04em;
-    color: var(--lwhite);
+    color: var(--blue);
 }
 
 .section-header span {
@@ -519,7 +520,7 @@ section.active {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--white);
+    background: var(--header);
 }
 
 .detail-header h2 {
@@ -534,7 +535,7 @@ section.active {
     letter-spacing: 0.15em;
     text-transform: uppercase;
     background: var(--black);
-    color: var(--white);
+    color: var(--lwhite);
     border: none;
     padding: 8px 18px;
     cursor: pointer;
@@ -631,6 +632,7 @@ section.active {
     top: 0;
     height: calc(100vh - 70px);
     align-self: start;
+    background-color: var(--header);
 }
 
 .sidebar-block {
@@ -639,7 +641,7 @@ section.active {
 
 .sidebar-label {
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--blue-dark);
@@ -649,7 +651,7 @@ section.active {
 }
 
 .sidebar-block p {
-    font-size: 24px;
+    font-size: 18px;
     color: #444;
     line-height: 1.6;
 }
@@ -886,6 +888,7 @@ section.active>* {
     font-size: 3rem;
     letter-spacing: 0.04em;
     line-height: 1;
+    color: var(--blue);
 }
 
 /* NEW CONTACT LAYOUT */
@@ -921,7 +924,7 @@ section.active>* {
 }
 
 .big-link:hover {
-    color: var(--blue);
+    color: var(--blue-soft);
     font-style: italic;
 }
 
@@ -935,7 +938,7 @@ section.active>* {
     font-size: 14px;
     letter-spacing: 0.1em;
     text-transform: none;
-    color: var(--blue);
+    color: var(--blue-soft);
     font-style: italic;
     opacity: 0;
     transition: opacity 0.3s ease, bottom 0.3s ease;

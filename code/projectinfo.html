@@ -1,27 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Details — Daniel Casadevall</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
         /* Force the project-detail to show nicely as a full page */
-        body { margin: 0; padding: 0; background: var(--white); height: 100vh; overflow: hidden; }
-        .project-detail { display: flex; flex-direction: column; height: 100vh; }
-        .detail-body { overflow-y: auto; }
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--white);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .project-detail {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .detail-body {
+            overflow-y: auto;
+        }
     </style>
 </head>
+
 <body>
     <div class="project-detail" id="detail-overlay" style="display: flex; position: static;">
         <div class="detail-header">
-            <img style="height: 50px; width: 200px;" src="assets/logo.png" alt="Daniel Casadevall" class="logo">
-            <div>
-                <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--blue-dark);margin-bottom:4px;" id="detail-year"></div>
-                <h2 id="detail-title">Loading...</h2>
+            <div style="display: flex; align-items: center; gap: 2rem;">
+                <img style="height: 50px; width: 200px;" src="assets/logo.png" alt="Daniel Casadevall" class="logo">
+                <div>
+                    <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--blue-dark);margin-bottom:4px;"
+                        id="detail-year"></div>
+                    <h2 id="detail-title">Loading...</h2>
+                </div>
             </div>
-            <a href="index.html" class="btn-close" style="text-decoration:none; display:inline-block; line-height:normal;">← Back</a>
+
+            <a href="projects.html" class="btn-close"
+                style="text-decoration:none; display:inline-block; line-height:normal;">← Back</a>
         </div>
         <div class="detail-body">
             <div class="detail-main">
@@ -101,4 +124,5 @@
         }
     </script>
 </body>
+
 </html>
