@@ -184,6 +184,44 @@
     });
   }
 
+  // ── Gallery Video Fullscreen
+  function initGalleryVideoFullscreen() {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    galleryItems.forEach(item => {
+      item.addEventListener('click', function(e) {
+        const video = item.querySelector('.gallery-video');
+        if (video && video.tagName.toLowerCase() === 'video') {
+          e.preventDefault();
+          
+          if (video.requestFullscreen) {
+            video.requestFullscreen();
+          } else if (video.webkitRequestFullscreen) {
+            video.webkitRequestFullscreen();
+          } else if (video.msRequestFullscreen) {
+            video.msRequestFullscreen();
+          }
+          
+          video.controls = true;
+          video.muted = false;
+
+          const handleFullscreenChange = () => {
+            if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.msFullscreenElement) {
+              video.controls = false;
+              video.muted = true;
+              video.removeEventListener('fullscreenchange', handleFullscreenChange);
+              video.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+              video.removeEventListener('msfullscreenchange', handleFullscreenChange);
+            }
+          };
+
+          video.addEventListener('fullscreenchange', handleFullscreenChange);
+          video.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+          video.addEventListener('msfullscreenchange', handleFullscreenChange);
+        }
+      });
+    });
+  }
+
   // ── Init
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onResize, { passive: true });
@@ -194,6 +232,7 @@
     initGalleryCursor();
     initFooterName();
     initProtectedEmails();
+    initGalleryVideoFullscreen();
     update(); // run once on load
   });
 
