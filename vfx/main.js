@@ -6,18 +6,18 @@
   'use strict';
 
   // ── Elements
-  const topbar    = document.getElementById('topbar');
+  const topbar = document.getElementById('topbar');
   const heroTitle = document.getElementById('hero-title');
-  const heroSub   = document.getElementById('hero-sub');
+  const heroSub = document.getElementById('hero-sub');
   const scrollCue = document.getElementById('scroll-cue');
-  const reelWrap  = document.getElementById('reel-wrap');
+  const reelWrap = document.getElementById('reel-wrap');
   const reelVideo = document.getElementById('reel-video');
-  const reelOvl   = document.getElementById('reel-overlay');
-  const playBtn   = document.getElementById('play-btn');
+  const reelOvl = document.getElementById('reel-overlay');
+  const playBtn = document.getElementById('play-btn');
 
   // ── State
   let ticking = false;
-  let heroH   = window.innerHeight;
+  let heroH = window.innerHeight;
 
   // ── Scroll handler
   function onScroll() {
@@ -29,7 +29,7 @@
   function update() {
     ticking = false;
     const sy = window.scrollY;
-    heroH    = window.innerHeight;
+    heroH = window.innerHeight;
 
     // 1. Topbar: appears after 60px
     if (sy > 60) {
@@ -41,18 +41,18 @@
     // 2. Hero title shrink + fade
     //    From heroH*0.15 → heroH*0.65  we shrink and fade
     const start = heroH * 0.15;
-    const end   = heroH * 0.65;
-    const prog  = Math.min(Math.max((sy - start) / (end - start), 0), 1);
+    const end = heroH * 0.65;
+    const prog = Math.min(Math.max((sy - start) / (end - start), 0), 1);
 
     const minScale = 0.12;   // how small the title shrinks to (relative to original)
-    const scale    = 1 - prog * (1 - minScale);
+    const scale = 1 - prog * (1 - minScale);
 
-    heroTitle.style.transform  = `scale(${scale})`;
+    heroTitle.style.transform = `scale(${scale})`;
     heroTitle.style.transformOrigin = 'center top';
-    heroTitle.style.opacity    = `${1 - prog * 0.85}`;
+    heroTitle.style.opacity = `${1 - prog * 0.85}`;
 
     // Hide sub / scroll cue as user scrolls
-    heroSub.style.opacity   = `${1 - prog * 3}`;
+    heroSub.style.opacity = `${1 - prog * 3}`;
     scrollCue.style.opacity = `${1 - prog * 4}`;
 
     // 3. VFX Intro Sticky fade
@@ -127,8 +127,8 @@
     items.forEach(item => {
       item.addEventListener('mousemove', function (e) {
         const rect = item.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width  - 0.5;
-        const y = (e.clientY - rect.top)  / rect.height - 0.5;
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
         const img = item.querySelector('.gallery-img');
         if (img) {
           img.style.transform = `scale(1.04) translate(${x * 8}px, ${y * 8}px)`;
