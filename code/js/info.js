@@ -1,4 +1,4 @@
-const PROJECTS = [
+ const PROJECTS = [
     {
         id: "automay",
         title: "Maya Auto Texturer",
@@ -34,19 +34,15 @@ const PROJECTS = [
         fullDesc: `<p>Spearheaded the pipeline engineering for the ENCORE shortfilm production by writing custom Python integrations. The primary technical objective was embedding Pixar USD (Universal Scene Description) asset variants and referencing workflows directly into the Prism Pipeline base code.</p><p>This architecture unified the studio environment, allowing seamless, non-destructive asset handoffs between SideFX Houdini and Autodesk Maya. It successfully eliminated technical friction across all creative departments, supporting a collaborative team of 16 artists.</p>`,
         github: "https://github.com/danicasjau/tloudPipeline",
         media: [
-            { type: "image", src: "assets/projectsdata/loudpipline/iamge(3).png" },
             { type: "image", src: "assets/projectsdata/loudpipline/iamge(5).png" },
-            { type: "image", src: "assets/projectsdata/loudpipline/iamge(7).png" },
             { type: "image", src: "assets/projectsdata/loudpipline/iamge(9).png" },
-            { type: "image", src: "assets/projectsdata/loudpipline/iamge(10).png" },
             { type: "image", src: "assets/projectsdata/loudpipline/iamge(14).png" },
             { type: "image", src: "assets/projectsdata/loudpipline/iamge(15).png" },
             { type: "image", src: "assets/projectsdata/loudpipline/iamge(16).png" },
-            { type: "image", src: "assets/projectsdata/loudpipline/iamge(17).png" },
-            { type: "image", src: "assets/projectsdata/loudpipline/iamge(18).png" },
-            { type: "image", src: "assets/projectsdata/loudpipline/iamge(19).png" },
             { type: "image", src: "assets/projectsdata/loudpipline/iamge(22).png" },
-            { type: "image", src: "assets/projectsdata/loudpipline/iamge(23).png" }
+            { type: "image", src: "assets/projectsdata/loudpipline/iamge(23).png" },
+            { type: "video", src: "assets/projectsdata/loudpipline/rec05.mp4" },
+            { type: "video", src: "assets/projectsdata/loudpipline/rec06.mp4" }
         ],
         color: "#cbd5e1"
     },
@@ -61,10 +57,8 @@ const PROJECTS = [
         fullDesc: `<p>Engineered an interactive digital human framework centered around real-time motion generation using the SMPL-X parametric human body model. The technical backbone relies on an asynchronous 96-frame chunk execution architecture, drastically minimizing latency gaps between generation and playback.</p><p>The framework merges three complex layers: motion diffusion pipelines for realistic body language, an LLM processing core for conversational intelligence, and a persistent memory database to give the character context awareness during live interactions.</p>`,
         github: "https://github.com/danicasjau/project-minivita",
         media: [
-            { type: "video", src: "assets/projectsdata/minivita/main02.mov" },
-            { type: "video", src: "assets/projectsdata/minivita/videoProcessMinivita.mp4" },
-            { type: "image", src: "assets/projectsdata/minivita/0001.png" },
-            { type: "image", src: "assets/projectsdata/minivita/back.png" }
+            { type: "image", src: "assets/projectsdata/minivita/back.png" },
+            { type: "video", src: "assets/projectsdata/minivita/videoProcessMinivita.mp4" }
         ],
         color: "#fee2e2"
     }
