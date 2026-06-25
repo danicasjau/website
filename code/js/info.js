@@ -58,7 +58,8 @@
         github: "https://github.com/danicasjau/project-minivita",
         media: [
             { type: "image", src: "assets/projectsdata/minivita/back.png" },
-            { type: "video", src: "assets/projectsdata/minivita/videoProcessMinivita.mp4" }
+            { type: "video", src: "assets/projectsdata/minivita/videoProcessMinivita.mp4" },
+{ type: "video", src: "assets/projectsdata/minivita/main02.mp4" },
         ],
         color: "#fee2e2"
     }
