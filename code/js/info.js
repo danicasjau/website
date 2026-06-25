@@ -75,9 +75,9 @@
         github: "https://github.com/danicasjau/website",
         media: [
             { type: "video", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_video.mp4" },
-            { type: "image", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_view01.png" },
-            { type: "image", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_view02.png" },
-            { type: "image", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_view03.png" }
+            { type: "image", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_viewport_001.png" },
+            { type: "image", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_viewport_002.png" },
+            { type: "image", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_viewport_003.png" }
         ],
         color: "#f1f5f9"
     },
