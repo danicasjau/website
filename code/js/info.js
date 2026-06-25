@@ -59,8 +59,41 @@
         media: [
             { type: "image", src: "assets/projectsdata/minivita/back.png" },
             { type: "video", src: "assets/projectsdata/minivita/videoProcessMinivita.mp4" },
-{ type: "video", src: "assets/projectsdata/minivita/main02.mp4" },
+            { type: "video", src: "assets/projectsdata/minivita/main02.mp4" }
         ],
         color: "#fee2e2"
+    },
+    {
+        id: "procedural-nature-hda",
+        title: "Houdini Procedural Organic Nature HDA",
+        subtitle: "Procedural Asset Generator",
+        year: "2026",
+        tags: ["Houdini", "VEX", "HDA", "Procedural Modeling"],
+        desc: "A custom SideFX Houdini Digital Asset designed for generating complex, organic nature elements using fully procedural rule-based algorithms.",
+        outcome: "Streamlined environmental asset generation with an intuitive HDA interface with integrated visual feedback captures.",
+        fullDesc: `<p>Developed a custom Houdini Digital Asset (HDA) focused on the generation of organic natural elements. Utilizing VEX and procedural node networks, the system creates highly customizable botanical structures with visual preview mechanics built right into the project files.</p>`,
+        github: "https://github.com/danicasjau/website",
+        media: [
+            { type: "video", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_video.mp4" },
+            { type: "image", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_view01.png" },
+            { type: "image", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_view02.png" },
+            { type: "image", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_view03.png" }
+        ],
+        color: "#f1f5f9"
+    },
+    {
+        id: "cels-evolution-simulation",
+        title: "Natural Selection Cels Evolution Simulation",
+        subtitle: "Biological System Simulator",
+        year: "2026",
+        tags: ["Simulation", "Evolutionary Algorithms", "Biological Systems"],
+        desc: "An evolution simulation modeling cellular growth, mutations, and natural selection behaviors over successive generations.",
+        outcome: "Visualized behavioral patterns and generational survival rules inside a custom environment loop.",
+        fullDesc: `<p>An algorithmic project centered on simulating cellular evolution and natural selection mechanics. Tracks cellular entities as they interact, pass down traits, mutate, and adapt to competitive environments over runtime cycles.</p>`,
+        youtube: "https://youtu.be/w0fMNQVMHpk?is=vOSOCQAfdMBBuXpZ",
+        media: [
+            { type: "video", src: "assets/projectsdata/cels/secuencia_01_vimeo.mp4_v3.mp4" }
+        ],
+        color: "#f8fafc"
     }
 ];
