@@ -92,7 +92,7 @@
         fullDesc: `<p>An algorithmic project centered on simulating cellular evolution and natural selection mechanics. Tracks cellular entities as they interact, pass down traits, mutate, and adapt to competitive environments over runtime cycles.</p>`,
         youtube: "https://youtu.be/w0fMNQVMHpk?is=vOSOCQAfdMBBuXpZ",
         media: [
-            { type: "video", src: "assets/projectsdata/cels/secuencia_01_vimeo.mp4_v3.mp4" }
+            { type: "video", src: "assets/projectsdata/cels/secuencia_01_vimeo.mp4_v3 (720p).mp4" }
         ],
         color: "#f8fafc"
     }
