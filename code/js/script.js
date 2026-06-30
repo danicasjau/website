@@ -16,16 +16,30 @@ function buildProjects() {
         const software = p.tags.filter(t => softwareKeywords.some(kw => t.includes(kw)));
         const softwareHTML = software.length > 0 ? `<div class="project-software">${software.slice(0, 4).map(s => `<span class="software-icon">${s}</span>`).join('')}</div>` : '';
 
-        let linksHTML = '';
+        let linkElements = [];
         if (p.links && p.links.length > 0) {
-            linksHTML = p.links.map(link => {
+            p.links.forEach(link => {
                 const label = link.label || (link.github ? 'GitHub' : 'Link');
                 const url = link.url || link.github || '#';
-                return `<a href="${url}" target="_blank" class="btn-ghost" onclick="event.stopPropagation()">${label} ↗</a>`;
-            }).join(' ');
-        } else if (p.github) {
-            linksHTML = `<a href="${p.github}" target="_blank" class="btn-ghost" onclick="event.stopPropagation()">GitHub ↗</a>`;
+                linkElements.push(`<a href="${url}" target="_blank" class="btn-ghost" onclick="event.stopPropagation()">${label} ↗</a>`);
+            });
         }
+        
+        const linkTypes = [
+            { key: 'github', label: 'GitHub' },
+            { key: 'youtube', label: 'YouTube' },
+            { key: 'paper', label: 'Paper' },
+            { key: 'vimeo', label: 'Vimeo' },
+            { key: 'website', label: 'Website' }
+        ];
+        
+        linkTypes.forEach(type => {
+            if (p[type.key]) {
+                linkElements.push(`<a href="${p[type.key]}" target="_blank" class="btn-ghost" onclick="event.stopPropagation()">${type.label} ↗</a>`);
+            }
+        });
+
+        let linksHTML = linkElements.join(' ');
 
         card.innerHTML = `
 

@@ -1,4 +1,4 @@
- const PROJECTS = [
+const PROJECTS = [
     {
         id: "automay",
         title: "Maya Auto Texturer",
@@ -11,15 +11,10 @@
         github: "https://github.com/danicasjau/automaytex",
         media: [
             { type: "video", src: "assets/projectsdata/automay/media_01.mov" },
-            { type: "image", src: "assets/projectsdata/automay/image_01.png" },
+            { type: "video", src: "assets/projectsdata/automay/example02.mov" },
             { type: "image", src: "assets/projectsdata/automay/image_02.png" },
-            { type: "image", src: "assets/projectsdata/automay/image_03.png" },
-            { type: "image", src: "assets/projectsdata/automay/image_04.png" },
-            { type: "image", src: "assets/projectsdata/automay/diffuse.png" },
             { type: "image", src: "assets/projectsdata/automay/fastMultipleExample.png" },
-            { type: "image", src: "assets/projectsdata/automay/piplinePlan.png", format: "large" },
-            { type: "video", src: "assets/projectsdata/automay/media_02.mov" },
-            { type: "video", src: "assets/projectsdata/automay/media_03.mov" }
+            { type: "image", src: "assets/projectsdata/automay/piplinePlan.png", format: "large" }
         ],
         color: "#edeff3"
     },
@@ -58,8 +53,9 @@
         github: "https://github.com/danicasjau/project-minivita",
         media: [
             { type: "image", src: "assets/projectsdata/minivita/back.png" },
+            { type: "image", src: "assets/projectsdata/minivita/0001.png" },
             { type: "video", src: "assets/projectsdata/minivita/videoProcessMinivita.mp4" },
-            { type: "video", src: "assets/projectsdata/minivita/main02.mp4" }
+            { type: "video", src: "assets/projectsdata/minivita/mian02.mp4" }
         ],
         color: "#fee2e2"
     },
@@ -74,10 +70,10 @@
         fullDesc: `<p>Developed a custom Houdini Digital Asset (HDA) focused on the generation of organic natural elements. Utilizing VEX and procedural node networks, the system creates highly customizable botanical structures with visual preview mechanics built right into the project files.</p>`,
         github: "https://github.com/danicasjau/website",
         media: [
-            { type: "video", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_video.mp4" },
             { type: "image", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_viewport_001.png" },
             { type: "image", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_viewport_002.png" },
-            { type: "image", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_viewport_003.png" }
+            { type: "image", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_viewport_003.png" },
+            { type: "image", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_viewport_004.png" }
         ],
         color: "#f1f5f9"
     },
@@ -90,6 +86,7 @@
         desc: "An evolution simulation modeling cellular growth, mutations, and natural selection behaviors over successive generations.",
         outcome: "Visualized behavioral patterns and generational survival rules inside a custom environment loop.",
         fullDesc: `<p>An algorithmic project centered on simulating cellular evolution and natural selection mechanics. Tracks cellular entities as they interact, pass down traits, mutate, and adapt to competitive environments over runtime cycles.</p>`,
+        github: "https://youtu.be/w0fMNQVMHpk?is=vOSOCQAfdMBBuXpZ",
         youtube: "https://youtu.be/w0fMNQVMHpk?is=vOSOCQAfdMBBuXpZ",
         media: [
             { type: "video", src: "assets/projectsdata/cels/secuencia_01_vimeo.mp4_v3 (720p).mp4" }

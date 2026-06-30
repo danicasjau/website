@@ -43,7 +43,7 @@
                 </div>
             </div>
 
-            <a href="projects.html" class="btn-close"
+            <a href="index.html" class="btn-close"
                 style="text-decoration:none; display:inline-block; line-height:normal;">← Back</a>
         </div>
         <div class="detail-body">
@@ -126,17 +126,31 @@
             }
 
             const links = document.getElementById('detail-links');
-            let linksHTML = '';
+            let linkElements = [];
+
             if (p.links && p.links.length > 0) {
-                linksHTML = p.links.map(link => {
+                p.links.forEach(link => {
                     const label = link.label || (link.github ? 'GitHub' : 'Link');
                     const url = link.url || link.github || '#';
-                    return `<a href="${url}" target="_blank" class="btn-ghost" style="display:inline-block;margin-top:8px;margin-right:8px;">${label} ↗</a>`;
-                }).join('');
-            } else if (p.github) {
-                linksHTML = `<a href="${p.github}" target="_blank" class="btn-ghost" style="display:inline-block;margin-top:8px;">GitHub ↗</a>`;
+                    linkElements.push(`<a href="${url}" target="_blank" class="btn-ghost" style="display:inline-block;margin-top:8px;margin-right:8px;">${label} ↗</a>`);
+                });
             }
-            links.innerHTML = linksHTML;
+
+            const linkTypes = [
+                { key: 'github', label: 'GitHub' },
+                { key: 'youtube', label: 'YouTube' },
+                { key: 'paper', label: 'Paper' },
+                { key: 'vimeo', label: 'Vimeo' },
+                { key: 'website', label: 'Website' }
+            ];
+
+            linkTypes.forEach(type => {
+                if (p[type.key]) {
+                    linkElements.push(`<a href="${p[type.key]}" target="_blank" class="btn-ghost" style="display:inline-block;margin-top:8px;margin-right:8px;">${type.label} ↗</a>`);
+                }
+            });
+
+            links.innerHTML = linkElements.join('');
 
             // Set up lightbox click handlers for images
             const lightbox = document.getElementById('lightbox-modal');
