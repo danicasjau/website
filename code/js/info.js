@@ -27,7 +27,7 @@ const PROJECTS = [
         desc: "Developed a custom Python integration to seamlessly embed Pixar USD asset variants and references into the Prism Pipeline architecture for a student film production.",
         outcome: "Successfully deployed as the core pipeline framework for the ENCORE shortfilm, connecting Houdini and Maya workflows across all production departments for a team of 16 students.",
         fullDesc: `<p>Spearheaded the pipeline engineering for the ENCORE shortfilm production by writing custom Python integrations. The primary technical objective was embedding Pixar USD (Universal Scene Description) asset variants and referencing workflows directly into the Prism Pipeline base code.</p><p>This architecture unified the studio environment, allowing seamless, non-destructive asset handoffs between SideFX Houdini and Autodesk Maya. It successfully eliminated technical friction across all creative departments, supporting a collaborative team of 16 artists.</p>`,
-        github: "https://github.com/danicasjau/tloudPipeline",
+        github: "https://github.com/danicasjau/tloudPipelinePrism",
         media: [
             { type: "image", src: "assets/projectsdata/loudpipline/iamge(5).png" },
             { type: "image", src: "assets/projectsdata/loudpipline/iamge(9).png" },
@@ -50,7 +50,7 @@ const PROJECTS = [
         desc: "Real-time human motion generation framework implementing an asynchronous 96-frame chunk execution path for low-latency digital human interactions.",
         outcome: "Achieved fluid, autonomous digital character interactions by successfully bridging generative motion models, long-term character memory, and LLM reasoning steps.",
         fullDesc: `<p>Engineered an interactive digital human framework centered around real-time motion generation using the SMPL-X parametric human body model. The technical backbone relies on an asynchronous 96-frame chunk execution architecture, drastically minimizing latency gaps between generation and playback.</p><p>The framework merges three complex layers: motion diffusion pipelines for realistic body language, an LLM processing core for conversational intelligence, and a persistent memory database to give the character context awareness during live interactions.</p>`,
-        github: "https://github.com/danicasjau/project-minivita",
+        github: "https://github.com/danicasjau/minivita",
         media: [
             { type: "image", src: "assets/projectsdata/minivita/back.png" },
             { type: "image", src: "assets/projectsdata/minivita/0001.png" },
@@ -68,12 +68,14 @@ const PROJECTS = [
         desc: "A custom SideFX Houdini Digital Asset designed for generating complex, organic nature elements using fully procedural rule-based algorithms.",
         outcome: "Streamlined environmental asset generation with an intuitive HDA interface with integrated visual feedback captures.",
         fullDesc: `<p>Developed a custom Houdini Digital Asset (HDA) focused on the generation of organic natural elements. Utilizing VEX and procedural node networks, the system creates highly customizable botanical structures with visual preview mechanics built right into the project files.</p>`,
-        github: "https://github.com/danicasjau/website",
         media: [
             { type: "image", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_viewport_001.png" },
             { type: "image", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_viewport_002.png" },
             { type: "image", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_viewport_003.png" },
-            { type: "image", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_viewport_004.png" }
+            { type: "image", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_network_004.png" },
+            { type: "image", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX02_network_005.png" },
+            { type: "image", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX04_screenshot_003.png" },
+            { type: "image", src: "assets/projectsdata/had/ModII_daniel.casadevall_EX04_screenshot_006.png" }
         ],
         color: "#f1f5f9"
     },
@@ -89,7 +91,15 @@ const PROJECTS = [
         github: "https://youtu.be/w0fMNQVMHpk?is=vOSOCQAfdMBBuXpZ",
         youtube: "https://youtu.be/w0fMNQVMHpk?is=vOSOCQAfdMBBuXpZ",
         media: [
-            { type: "video", src: "assets/projectsdata/cels/sequencia01.mp4" }
+            { type: "video", src: "assets/projectsdata/cels/sequencia01.mp4" },
+            { type: "image", src: "assets/projectsdata/cels/(1).png" },
+            { type: "image", src: "assets/projectsdata/cels/(2).png" },
+            { type: "image", src: "assets/projectsdata/cels/(3).png" },
+            { type: "image", src: "assets/projectsdata/cels/(4).png" },
+            { type: "image", src: "assets/projectsdata/cels/(5).png" },
+            { type: "image", src: "assets/projectsdata/cels/(6).png" },
+            { type: "image", src: "assets/projectsdata/cels/(7).png" },
+            { type: "image", src: "assets/projectsdata/cels/(8).png" }
         ],
         color: "#f8fafc"
     }
