@@ -89,7 +89,7 @@ const PROJECTS = [
         github: "https://youtu.be/w0fMNQVMHpk?is=vOSOCQAfdMBBuXpZ",
         youtube: "https://youtu.be/w0fMNQVMHpk?is=vOSOCQAfdMBBuXpZ",
         media: [
-            { type: "video", src: "assets/projectsdata/cels/secuencia_01_vimeo.mp4_v3 (720p).mp4" }
+            { type: "video", src: "assets/projectsdata/cels/sequencia01.mp4" }
         ],
         color: "#f8fafc"
     }

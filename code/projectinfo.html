@@ -10,47 +10,226 @@
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* Force the project-detail to show nicely as a full page */
+        /* ---- Page-level overrides, scoped to the project-detail view ---- */
         body {
-            margin: 0;
-            padding: 0;
-            background: var(--white);
-            height: 100vh;
+            padding-top: 0;
             overflow: hidden;
         }
 
         .project-detail {
             display: flex;
-            flex-direction: column;
-            height: 100vh;
+            position: static;
+            background-color: var(--header);
         }
 
+        /* Header: back button left, title block truly centered */
+        .detail-header {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .detail-header .header-left {
+            justify-self: start;
+        }
+
+        .detail-header .header-center {
+            justify-self: center;
+            text-align: center;
+        }
+
+        .detail-header .header-spacer {
+            justify-self: end;
+        }
+
+        .detail-eyebrow {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: var(--blue-dark);
+            margin-bottom: 4px;
+        }
+
+        .detail-header h2 {
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .detail-subtitle {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            font-size: 13px;
+            color: var(--gray);
+            margin-top: 2px;
+        }
+
+        /* Body: keep the 60/40 split but let media breathe naturally */
         .detail-body {
             overflow-y: auto;
+            max-width: 1500px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: var(--header);
+        }
+
+        .detail-main {
+            padding: 2.5rem;
+        }
+
+        .hero-media {
+            border: var(--border);
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            background: var(--black);
+        }
+
+        .hero-media img,
+        .hero-media video {
+            width: 100%;
+            height: auto;
+            display: block;
+            opacity: .92;
+        }
+
+        /* Natural masonry flow instead of a fixed grid */
+        .media-columns {
+            column-count: 2;
+            column-gap: 1.5rem;
+            border-top: none;
+            border-left: none;
+        }
+
+        @media (max-width:600px) {
+            .media-columns {
+                column-count: 1;
+            }
+        }
+
+        .media-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            position: relative;
+            border-radius: 4px;
+        }
+
+        .media-item img,
+        .media-item video {
+            width: 100%;
+            height: auto;
+            display: block;
+            opacity: .88;
+            transition: transform .4s ease, opacity .3s ease;
+        }
+
+        .media-item.clickable {
+            cursor: zoom-in;
+        }
+
+        .media-item.clickable:hover img {
+            transform: scale(1.025);
+            opacity: 1;
+        }
+
+        .media-ph {
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ph-type {
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            letter-spacing: .1em;
+            color: var(--blue);
+            opacity: .5;
+            text-transform: uppercase;
+            display: block;
+            text-align: center;
+            margin-top: 4px;
+        }
+
+        /* Sidebar text given room to read naturally */
+        .detail-description {
+            font-size: 14px;
+            line-height: 1.75;
+            color: #cfcfcf;
+            max-width: 60ch;
+        }
+
+        .detail-description p {
+            margin-bottom: 1rem;
+        }
+
+        .detail-description p:last-child {
+            margin-bottom: 0;
+        }
+
+        #detail-outcome {
+            font-size: 14px;
+            line-height: 1.75;
+            color: #cfcfcf;
+            max-width: 60ch;
+        }
+
+        .links-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        /* Lightbox: zoom + pan on top of the site's existing modal styles */
+        .lightbox-content-wrapper {
+            cursor: zoom-in;
+        }
+
+        .lightbox-content-wrapper.zoomed {
+            cursor: grab;
+        }
+
+        .lightbox-content-wrapper.zoomed.dragging {
+            cursor: grabbing;
+        }
+
+        .lightbox-content {
+            transition: transform .25s ease;
+        }
+
+        .lightbox-hint {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .5);
         }
     </style>
 </head>
 
 <body>
-    <div class="project-detail" id="detail-overlay" style="display: flex; position: static;">
+    <div class="project-detail open" id="detail-overlay">
         <div class="detail-header">
-            <div style="display: flex; align-items: center; gap: 2rem;">
-                <img style="height: 50px; width: 200px;" src="assets/logo.png" alt="Daniel Casadevall" class="logo">
-                <div>
-                    <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--blue-dark);margin-bottom:4px;"
-                        id="detail-year"></div>
-                    <h2 id="detail-title">Loading...</h2>
-                </div>
+            <a href="index.html" class="btn-close header-left">← Back</a>
+            <div class="header-center">
+                <div class="detail-eyebrow" id="detail-year"></div>
+                <h2 id="detail-title">Loading...</h2>
+                <div class="detail-subtitle" id="detail-subtitle"></div>
             </div>
-
-            <a href="index.html" class="btn-close"
-                style="text-decoration:none; display:inline-block; line-height:normal;">← Back</a>
+            <div class="header-spacer"></div>
         </div>
+
         <div class="detail-body">
             <div class="detail-main">
-                <div id="detail-first-media"></div>
-                <div class="detail-images" id="detail-images"></div>
+                <div class="hero-media" id="detail-hero"></div>
+                <div class="media-columns" id="detail-images"></div>
             </div>
+
             <div class="detail-sidebar">
                 <div class="sidebar-block">
                     <div class="sidebar-label">Description</div>
@@ -66,7 +245,7 @@
                 </div>
                 <div class="sidebar-block" id="detail-links-block">
                     <div class="sidebar-label">Links</div>
-                    <div id="detail-links"></div>
+                    <div id="detail-links" class="links-row"></div>
                 </div>
             </div>
         </div>
@@ -75,67 +254,78 @@
     <!-- Lightbox Zoom Modal -->
     <div id="lightbox-modal" class="lightbox">
         <span class="lightbox-close">&times;</span>
-        <div class="lightbox-content-wrapper">
+        <div class="lightbox-content-wrapper" id="lightbox-wrapper">
             <img class="lightbox-content" id="lightbox-img" src="" alt="">
         </div>
+        <div class="lightbox-hint">Click to zoom · drag to pan · Esc to close</div>
     </div>
 
     <script src="js/info.js"></script>
     <script>
         const params = new URLSearchParams(window.location.search);
         const projectId = params.get('id');
-        const p = PROJECTS.find(proj => proj.id === projectId);
+        const p = (typeof PROJECTS !== 'undefined') ? PROJECTS.find(proj => proj.id === projectId) : null;
 
         if (p) {
             document.title = p.title + ' — Daniel Casadevall';
-            document.getElementById('detail-title').textContent = p.title + ' — ' + p.subtitle;
-            document.getElementById('detail-year').textContent = p.year;
-            document.getElementById('detail-desc').innerHTML = p.fullDesc;
-            document.getElementById('detail-outcome').textContent = p.outcome;
+            document.getElementById('detail-title').textContent = p.title;
+            document.getElementById('detail-subtitle').textContent = p.subtitle || '';
+            document.getElementById('detail-year').textContent = p.year || '';
+            document.getElementById('detail-desc').innerHTML = p.fullDesc || '';
+            document.getElementById('detail-outcome').textContent = p.outcome || '';
 
-            const stack = document.getElementById('detail-stack');
-            stack.innerHTML = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+            document.getElementById('detail-stack').innerHTML =
+                (p.tags || []).map(t => `<span class="tag software-icon">${t}</span>`).join('');
 
-            const firstMedia = document.getElementById('detail-first-media');
-            const otherMedia = document.getElementById('detail-images');
+            const hero = document.getElementById('detail-hero');
+            const grid = document.getElementById('detail-images');
 
-            // Sort media: videos first, then images
             const sortedMedia = p.media ? [
                 ...p.media.filter(m => m.type === 'video'),
                 ...p.media.filter(m => m.type === 'image')
             ] : [];
 
-            if (sortedMedia.length > 0) {
-                // Render first media item
-                const m0 = sortedMedia[0];
-                firstMedia.innerHTML = `
-                    <div class="detail-img-hero ${m0.format ? 'format-' + m0.format : ''}">
-                        ${m0.src ? (m0.type === 'video' ? `<video src="${m0.src}" controls playsinline autoplay loop></video>` : `<img src="${m0.src}" alt="${p.title} 1">`) : `<div class="detail-img-ph"><div style="display:flex;flex-direction:column;align-items:center;gap:4px;"><span class="img-num" style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--blue);opacity:.3;">01</span><span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--blue-dark);opacity:0.5;text-transform:uppercase;">${m0.type}</span></div></div>`}
+            const renderPlaceholder = (n, type) => `
+                <div class="media-ph">
+                    <div>
+                        <div class="img-num">${String(n).padStart(2, '0')}</div>
+                        <span class="ph-type">${type}</span>
                     </div>
-                `;
+                </div>`;
 
-                // Render other media items
-                otherMedia.innerHTML = sortedMedia.slice(1).map((m, j) => `
-                    <div class="detail-img ${m.format ? 'format-' + m.format : ''}">
-                        ${m.src ? (m.type === 'video' ? `<video src="${m.src}" muted playsinline autoplay loop></video>` : `<img src="${m.src}" alt="${p.title} ${j + 2}">`) : `<div class="detail-img-ph"><div style="display:flex;flex-direction:column;align-items:center;gap:4px;"><span class="img-num" style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--blue);opacity:.3;">0${j + 2}</span><span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--blue-dark);opacity:0.5;text-transform:uppercase;">${m.type}</span></div></div>`}
-                    </div>
-                `).join('');
+            if (sortedMedia.length > 0) {
+                const m0 = sortedMedia[0];
+                hero.innerHTML = m0.src
+                    ? (m0.type === 'video'
+                        ? `<video src="${m0.src}" controls playsinline autoplay loop muted></video>`
+                        : `<img src="${m0.src}" alt="${p.title} 1">`)
+                    : renderPlaceholder(1, m0.type);
+
+                grid.innerHTML = sortedMedia.slice(1).map((m, j) => {
+                    const n = j + 2;
+                    if (!m.src) {
+                        return `<div class="media-item">${renderPlaceholder(n, m.type)}</div>`;
+                    }
+                    if (m.type === 'video') {
+                        return `<div class="media-item"><video src="${m.src}" muted playsinline autoplay loop></video></div>`;
+                    }
+                    return `<div class="media-item clickable"><img src="${m.src}" alt="${p.title} ${n}"></div>`;
+                }).join('');
             } else {
-                firstMedia.innerHTML = '';
-                otherMedia.innerHTML = '';
+                hero.innerHTML = '';
+                grid.innerHTML = '';
             }
 
+            // Links
             const links = document.getElementById('detail-links');
             let linkElements = [];
-
             if (p.links && p.links.length > 0) {
                 p.links.forEach(link => {
                     const label = link.label || (link.github ? 'GitHub' : 'Link');
                     const url = link.url || link.github || '#';
-                    linkElements.push(`<a href="${url}" target="_blank" class="btn-ghost" style="display:inline-block;margin-top:8px;margin-right:8px;">${label} ↗</a>`);
+                    linkElements.push(`<a href="${url}" target="_blank" class="btn-ghost">${label} ↗</a>`);
                 });
             }
-
             const linkTypes = [
                 { key: 'github', label: 'GitHub' },
                 { key: 'youtube', label: 'YouTube' },
@@ -143,22 +333,38 @@
                 { key: 'vimeo', label: 'Vimeo' },
                 { key: 'website', label: 'Website' }
             ];
-
             linkTypes.forEach(type => {
                 if (p[type.key]) {
-                    linkElements.push(`<a href="${p[type.key]}" target="_blank" class="btn-ghost" style="display:inline-block;margin-top:8px;margin-right:8px;">${type.label} ↗</a>`);
+                    linkElements.push(`<a href="${p[type.key]}" target="_blank" class="btn-ghost">${type.label} ↗</a>`);
                 }
             });
-
             links.innerHTML = linkElements.join('');
+            if (linkElements.length === 0) {
+                document.getElementById('detail-links-block').style.display = 'none';
+            }
 
-            // Set up lightbox click handlers for images
+            // ---------- Lightbox with zoom & pan ----------
             const lightbox = document.getElementById('lightbox-modal');
             const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxWrapper = document.getElementById('lightbox-wrapper');
+
+            let scale = 1, originX = 0, originY = 0;
+            let isDragging = false, startX = 0, startY = 0;
+
+            function resetZoom() {
+                scale = 1; originX = 0; originY = 0;
+                lightboxImg.style.transform = 'translate(0px,0px) scale(1)';
+                lightboxImg.classList.remove('zoomed');
+                lightboxWrapper.classList.remove('zoomed');
+            }
+
+            function applyTransform() {
+                lightboxImg.style.transform = `translate(${originX}px, ${originY}px) scale(${scale})`;
+            }
 
             const mediaImages = [
-                ...firstMedia.querySelectorAll('img'),
-                ...otherMedia.querySelectorAll('img')
+                ...hero.querySelectorAll('img'),
+                ...grid.querySelectorAll('img')
             ];
 
             mediaImages.forEach(imgEl => {
@@ -167,25 +373,70 @@
                     e.stopPropagation();
                     lightboxImg.src = imgEl.src;
                     lightboxImg.alt = imgEl.alt;
+                    resetZoom();
                     lightbox.classList.add('open');
-                    lightboxImg.classList.remove('zoomed');
                     document.body.style.overflow = 'hidden';
                 });
             });
 
-            const closeLightbox = () => {
+            function closeLightbox() {
                 lightbox.classList.remove('open');
-                lightboxImg.classList.remove('zoomed');
+                resetZoom();
                 document.body.style.overflow = '';
-            };
+            }
 
-            const closeBtn = document.querySelector('.lightbox-close');
-            if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
-            lightbox.addEventListener('click', closeLightbox);
-            lightboxImg.addEventListener('click', (e) => {
-                e.stopPropagation();
-                lightboxImg.classList.toggle('zoomed');
+            document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
             });
+
+            lightboxWrapper.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (isDragging) return;
+                if (scale === 1) {
+                    scale = 2.2;
+                    lightboxImg.classList.add('zoomed');
+                    lightboxWrapper.classList.add('zoomed');
+                } else {
+                    resetZoom();
+                }
+                applyTransform();
+            });
+
+            lightboxWrapper.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY < 0 ? 0.15 : -0.15;
+                scale = Math.min(4, Math.max(1, scale + delta));
+                if (scale === 1) {
+                    originX = 0; originY = 0;
+                    lightboxImg.classList.remove('zoomed');
+                    lightboxWrapper.classList.remove('zoomed');
+                } else {
+                    lightboxImg.classList.add('zoomed');
+                    lightboxWrapper.classList.add('zoomed');
+                }
+                applyTransform();
+            }, { passive: false });
+
+            lightboxWrapper.addEventListener('mousedown', (e) => {
+                if (scale === 1) return;
+                isDragging = true;
+                lightboxWrapper.classList.add('dragging');
+                startX = e.clientX - originX;
+                startY = e.clientY - originY;
+            });
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                originX = e.clientX - startX;
+                originY = e.clientY - startY;
+                applyTransform();
+            });
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+                lightboxWrapper.classList.remove('dragging');
+            });
+
         } else {
             document.getElementById('detail-title').textContent = "Project not found";
             document.getElementById('detail-desc').innerHTML = "<p>Please return to the home page and select a valid project.</p>";

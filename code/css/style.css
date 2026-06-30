@@ -508,7 +508,6 @@ section.active {
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--white);
     z-index: 100;
     overflow: hidden;
 }
@@ -556,7 +555,7 @@ section.active {
 }
 
 .detail-main {
-    border-right: var(--border);
+    background-color: var(--header);
     padding: 2rem;
 }
 
@@ -567,6 +566,8 @@ section.active {
     overflow: hidden;
     margin-bottom: 2rem;
 }
+
+
 
 .detail-img-hero img,
 .detail-img-hero video {
@@ -633,6 +634,7 @@ section.active {
     height: calc(100vh - 70px);
     align-self: start;
     background-color: var(--header);
+    border: 0px;
 }
 
 .sidebar-block {

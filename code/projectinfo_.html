@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details — Daniel Casadevall</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Force the project-detail to show nicely as a full page */
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--white);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .project-detail {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .detail-body {
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="project-detail" id="detail-overlay" style="display: flex; position: static;">
+        <div class="detail-header">
+            <div style="display: flex; align-items: center; gap: 2rem;">
+                <img style="height: 50px; width: 200px;" src="assets/logo.png" alt="Daniel Casadevall" class="logo">
+                <div>
+                    <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--blue-dark);margin-bottom:4px;"
+                        id="detail-year"></div>
+                    <h2 id="detail-title">Loading...</h2>
+                </div>
+            </div>
+
+            <a href="index.html" class="btn-close"
+                style="text-decoration:none; display:inline-block; line-height:normal;">← Back</a>
+        </div>
+        <div class="detail-body">
+            <div class="detail-main">
+                <div id="detail-first-media"></div>
+                <div class="detail-images" id="detail-images"></div>
+            </div>
+            <div class="detail-sidebar">
+                <div class="sidebar-block">
+                    <div class="sidebar-label">Description</div>
+                    <div class="detail-description" id="detail-desc"></div>
+                </div>
+                <div class="sidebar-block">
+                    <div class="sidebar-label">Stack</div>
+                    <div id="detail-stack" class="stack-list"></div>
+                </div>
+                <div class="sidebar-block">
+                    <div class="sidebar-label">Outcome</div>
+                    <p id="detail-outcome"></p>
+                </div>
+                <div class="sidebar-block" id="detail-links-block">
+                    <div class="sidebar-label">Links</div>
+                    <div id="detail-links"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Zoom Modal -->
+    <div id="lightbox-modal" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content-wrapper">
+            <img class="lightbox-content" id="lightbox-img" src="" alt="">
+        </div>
+    </div>
+
+    <script src="js/info.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const projectId = params.get('id');
+        const p = PROJECTS.find(proj => proj.id === projectId);
+
+        if (p) {
+            document.title = p.title + ' — Daniel Casadevall';
+            document.getElementById('detail-title').textContent = p.title + ' — ' + p.subtitle;
+            document.getElementById('detail-year').textContent = p.year;
+            document.getElementById('detail-desc').innerHTML = p.fullDesc;
+            document.getElementById('detail-outcome').textContent = p.outcome;
+
+            const stack = document.getElementById('detail-stack');
+            stack.innerHTML = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+            const firstMedia = document.getElementById('detail-first-media');
+            const otherMedia = document.getElementById('detail-images');
+
+            // Sort media: videos first, then images
+            const sortedMedia = p.media ? [
+                ...p.media.filter(m => m.type === 'video'),
+                ...p.media.filter(m => m.type === 'image')
+            ] : [];
+
+            if (sortedMedia.length > 0) {
+                // Render first media item
+                const m0 = sortedMedia[0];
+                firstMedia.innerHTML = `
+                    <div class="detail-img-hero ${m0.format ? 'format-' + m0.format : ''}">
+                        ${m0.src ? (m0.type === 'video' ? `<video src="${m0.src}" controls playsinline autoplay loop></video>` : `<img src="${m0.src}" alt="${p.title} 1">`) : `<div class="detail-img-ph"><div style="display:flex;flex-direction:column;align-items:center;gap:4px;"><span class="img-num" style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--blue);opacity:.3;">01</span><span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--blue-dark);opacity:0.5;text-transform:uppercase;">${m0.type}</span></div></div>`}
+                    </div>
+                `;
+
+                // Render other media items
+                otherMedia.innerHTML = sortedMedia.slice(1).map((m, j) => `
+                    <div class="detail-img ${m.format ? 'format-' + m.format : ''}">
+                        ${m.src ? (m.type === 'video' ? `<video src="${m.src}" muted playsinline autoplay loop></video>` : `<img src="${m.src}" alt="${p.title} ${j + 2}">`) : `<div class="detail-img-ph"><div style="display:flex;flex-direction:column;align-items:center;gap:4px;"><span class="img-num" style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--blue);opacity:.3;">0${j + 2}</span><span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--blue-dark);opacity:0.5;text-transform:uppercase;">${m.type}</span></div></div>`}
+                    </div>
+                `).join('');
+            } else {
+                firstMedia.innerHTML = '';
+                otherMedia.innerHTML = '';
+            }
+
+            const links = document.getElementById('detail-links');
+            let linkElements = [];
+
+            if (p.links && p.links.length > 0) {
+                p.links.forEach(link => {
+                    const label = link.label || (link.github ? 'GitHub' : 'Link');
+                    const url = link.url || link.github || '#';
+                    linkElements.push(`<a href="${url}" target="_blank" class="btn-ghost" style="display:inline-block;margin-top:8px;margin-right:8px;">${label} ↗</a>`);
+                });
+            }
+
+            const linkTypes = [
+                { key: 'github', label: 'GitHub' },
+                { key: 'youtube', label: 'YouTube' },
+                { key: 'paper', label: 'Paper' },
+                { key: 'vimeo', label: 'Vimeo' },
+                { key: 'website', label: 'Website' }
+            ];
+
+            linkTypes.forEach(type => {
+                if (p[type.key]) {
+                    linkElements.push(`<a href="${p[type.key]}" target="_blank" class="btn-ghost" style="display:inline-block;margin-top:8px;margin-right:8px;">${type.label} ↗</a>`);
+                }
+            });
+
+            links.innerHTML = linkElements.join('');
+
+            // Set up lightbox click handlers for images
+            const lightbox = document.getElementById('lightbox-modal');
+            const lightboxImg = document.getElementById('lightbox-img');
+
+            const mediaImages = [
+                ...firstMedia.querySelectorAll('img'),
+                ...otherMedia.querySelectorAll('img')
+            ];
+
+            mediaImages.forEach(imgEl => {
+                imgEl.style.cursor = 'zoom-in';
+                imgEl.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    lightboxImg.src = imgEl.src;
+                    lightboxImg.alt = imgEl.alt;
+                    lightbox.classList.add('open');
+                    lightboxImg.classList.remove('zoomed');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            const closeLightbox = () => {
+                lightbox.classList.remove('open');
+                lightboxImg.classList.remove('zoomed');
+                document.body.style.overflow = '';
+            };
+
+            const closeBtn = document.querySelector('.lightbox-close');
+            if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', closeLightbox);
+            lightboxImg.addEventListener('click', (e) => {
+                e.stopPropagation();
+                lightboxImg.classList.toggle('zoomed');
+            });
+        } else {
+            document.getElementById('detail-title').textContent = "Project not found";
+            document.getElementById('detail-desc').innerHTML = "<p>Please return to the home page and select a valid project.</p>";
+        }
+    </script>
+</body>
+
+</html>
