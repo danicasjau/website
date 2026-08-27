@@ -1,10 +1,13 @@
 function buildProjects() {
     const grid = document.getElementById('projects-grid');
     if (!grid) return; // In case we are not on index.html
+    const isAllProjects = grid.classList.contains('projects-grid-all') || window.location.pathname.includes('allprojects');
 
-    PROJECTS.forEach((p, i) => {
+    const projectsToRender = isAllProjects ? PROJECTS : PROJECTS.slice(0, 4);
+
+    projectsToRender.forEach((p, i) => {
         const card = document.createElement('div');
-        card.className = 'project-card';
+        card.className = isAllProjects ? 'project-card-all' : 'project-card';
         card.style.backgroundColor = p.color;
         const mainMedia = p.media[0];
         const mediaHTML = mainMedia.src ?

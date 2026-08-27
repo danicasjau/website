@@ -6,182 +6,336 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Details — Daniel Casadevall</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* ---- Page-level overrides, scoped to the project-detail view ---- */
         body {
-            padding-top: 0;
-            overflow: hidden;
-        }
-
-        .project-detail {
-            display: flex;
-            position: static;
             background-color: var(--header);
+            color: var(--black);
+            font-family: 'DM Sans', sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Header: back button left, title block truly centered */
+        /* Header Navigation */
         .detail-header {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
             align-items: center;
-            gap: 1.5rem;
+            padding: 1.2rem 3rem;
+            border-bottom: var(--border);
+            background: var(--header);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .detail-header .header-left {
+        .header-left {
             justify-self: start;
         }
 
-        .detail-header .header-center {
+        .header-center {
             justify-self: center;
             text-align: center;
         }
 
-        .detail-header .header-spacer {
+        .header-spacer {
             justify-self: end;
         }
 
         .detail-eyebrow {
             font-family: 'DM Mono', monospace;
-            font-size: 10px;
+            font-size: 11px;
             letter-spacing: .15em;
             text-transform: uppercase;
             color: var(--blue-dark);
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
-        .detail-header h2 {
+        .detail-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5rem;
+            letter-spacing: 0.05em;
             margin: 0;
-            white-space: nowrap;
+            line-height: 1;
+            color: var(--black);
         }
 
         .detail-subtitle {
             font-family: 'DM Sans', sans-serif;
             font-weight: 300;
-            font-size: 13px;
+            font-size: 1.1rem;
             color: var(--gray);
-            margin-top: 2px;
-        }
-
-        /* Body: keep the 60/40 split but let media breathe naturally */
-        .detail-body {
-            overflow-y: auto;
-            max-width: 1500px;
-            margin-left: auto;
-            margin-right: auto;
-            background-color: var(--header);
-        }
-
-        .detail-main {
-            padding: 2.5rem;
-        }
-
-        .hero-media {
-            border: var(--border);
-            overflow: hidden;
-            margin-bottom: 1.5rem;
-            background: var(--black);
-        }
-
-        .hero-media img,
-        .hero-media video {
-            width: 100%;
-            height: auto;
-            display: block;
-            opacity: .92;
-        }
-
-        /* Natural masonry flow instead of a fixed grid */
-        .media-columns {
-            column-count: 2;
-            column-gap: 1.5rem;
-            border-top: none;
-            border-left: none;
-        }
-
-        @media (max-width:600px) {
-            .media-columns {
-                column-count: 1;
-            }
-        }
-
-        .media-item {
-            break-inside: avoid;
-            margin-bottom: 1.5rem;
-            overflow: hidden;
-            position: relative;
-            border-radius: 4px;
-        }
-
-        .media-item img,
-        .media-item video {
-            width: 100%;
-            height: auto;
-            display: block;
-            opacity: .88;
-            transition: transform .4s ease, opacity .3s ease;
-        }
-
-        .media-item.clickable {
-            cursor: zoom-in;
-        }
-
-        .media-item.clickable:hover img {
-            transform: scale(1.025);
-            opacity: 1;
-        }
-
-        .media-ph {
-            aspect-ratio: 4/3;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .ph-type {
-            font-family: 'DM Mono', monospace;
-            font-size: 9px;
-            letter-spacing: .1em;
-            color: var(--blue);
-            opacity: .5;
-            text-transform: uppercase;
-            display: block;
-            text-align: center;
             margin-top: 4px;
         }
 
-        /* Sidebar text given room to read naturally */
-        .detail-description {
-            font-size: 14px;
-            line-height: 1.75;
-            color: #cfcfcf;
-            max-width: 60ch;
+        .project-detail-container {
+            max-width: 1550px;
+            margin: 0 auto;
+            padding: 2rem 2rem 5rem 2rem;
         }
 
-        .detail-description p {
-            margin-bottom: 1rem;
+        /* 1. Big Hero Video/Image Section */
+        .hero-media-container {
+            width: 100%;
+            max-width: 1500px;
+            margin: 0.5rem auto 3.5rem auto;
+            border: var(--border);
+            overflow: hidden;
+            background: #000;
         }
 
-        .detail-description p:last-child {
+        .hero-media-container video,
+        .hero-media-container img {
+            width: 100%;
+            max-height: 82vh;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* 2. Divided Split Layout (Left: Text & Explications, Right: Images) */
+        .project-split-layout {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 3.5rem;
+            align-items: start;
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 950px) {
+            .project-split-layout {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+
+        /* Lateral Column 1: Text & Explications */
+        .text-lateral-column {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .content-block {
+            background: transparent;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+            padding-bottom: 2rem;
+        }
+
+        .content-block:last-child {
+            border-bottom: none;
+        }
+
+        .block-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--blue-dark);
+            margin-bottom: 1.2rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .block-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        /* 4-8 word general description tagline */
+        .general-tagline {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: var(--black);
+            line-height: 1.45;
+            margin-bottom: 1.5rem;
+            padding-left: 1.2rem;
+            border-left: 4px solid var(--blue-dark);
+        }
+
+        /* Text slightly bigger */
+        .detail-text {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--black);
+        }
+
+        .detail-text p {
+            margin-bottom: 1.2rem;
+        }
+
+        .detail-text p:last-child {
             margin-bottom: 0;
         }
 
-        #detail-outcome {
-            font-size: 14px;
-            line-height: 1.75;
-            color: #cfcfcf;
-            max-width: 60ch;
+        /* Highlighted words using <bl> */
+        bl {
+            font-weight: 700;
+            color: var(--black);
         }
 
+        /* Tech Stack Icons - Bigger */
+        .stack-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .stack-tag {
+            font-family: 'DM Mono', monospace;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--black);
+            letter-spacing: 0.05em;
+            color: var(--black);
+        }
+
+        /* Links row */
         .links-row {
             display: flex;
             flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn-ghost-large {
+            font-family: 'DM Mono', monospace;
+            font-size: 14px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--black);
+            border: 1px solid var(--black);
+            padding: 10px 20px;
+            transition: all 0.2s ease;
+            background: transparent;
+            display: inline-flex;
+            align-items: center;
             gap: 8px;
         }
 
-        /* Lightbox: zoom + pan on top of the site's existing modal styles */
+        .btn-ghost-large:hover {
+            background: var(--black);
+            color: var(--lwhite);
+        }
+
+        /* Lateral Column 2: Images */
+        .gallery-lateral-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .gallery-item {
+            border: var(--border);
+            overflow: hidden;
+            background: #000;
+            cursor: zoom-in;
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+
+        .gallery-item img,
+        .gallery-item video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        #detail-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.8rem;
+        }
+
+        /* Target item 1, 4, 7, 10, etc. (every 3rd item starting from 1) */
+        #detail-gallery>*:nth-child(3n + 1) {
+            grid-column: span 2;
+        }
+
+        /* Ensures gallery items fill their grid cells properly */
+        #detail-gallery>* {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Footer Navigation Buttons (Previous Project / Next Project) */
+        .project-nav-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 3rem 2rem 1rem 2rem;
+            border-top: var(--border);
+            margin-top: 5rem;
+            background: var(--header);
+            max-width: 1500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .nav-btn-link {
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--black);
+            border: 1px solid var(--black);
+            padding: 14px 24px;
+            transition: all 0.2s ease;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: 48%;
+            width: 100%;
+        }
+
+        .nav-btn-link.prev-link {
+            justify-content: flex-start;
+        }
+
+        .nav-btn-link.next-link {
+            justify-content: flex-end;
+            margin-left: auto;
+        }
+
+        .nav-btn-link:hover {
+            background: var(--black);
+            color: var(--lwhite);
+        }
+
+        .nav-btn-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-btn-text .btn-label {
+            font-size: 10px;
+            opacity: 0.7;
+            letter-spacing: 0.15em;
+        }
+
+        .nav-btn-text .btn-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: 0.05em;
+            line-height: 1.1;
+        }
+
+        /* Lightbox modal */
         .lightbox-content-wrapper {
             cursor: zoom-in;
         }
@@ -209,45 +363,124 @@
             text-transform: uppercase;
             color: rgba(255, 255, 255, .5);
         }
+
+        @media (max-width: 768px) {
+            .project-nav-footer {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .nav-btn-link {
+                max-width: 100%;
+                justify-content: center !important;
+            }
+
+            .detail-header {
+                padding: 1rem 1.5rem;
+            }
+
+            .detail-title {
+                font-size: 2.8rem;
+            }
+        }
+
+        #detail-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.8rem;
+        }
+
+        /* Target item 1, 4, 7, 10, etc. (every 3rd item starting from 1) */
+        #detail-gallery>*:nth-child(3n + 1) {
+            grid-column: span 2;
+        }
+
+        /* Ensures images fill their grid cells properly */
+        #detail-gallery>* {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
     </style>
 </head>
 
 <body>
-    <div class="project-detail open" id="detail-overlay">
-        <div class="detail-header">
-            <a href="index.html" class="btn-close header-left">← Back</a>
-            <div class="header-center">
-                <div class="detail-eyebrow" id="detail-year"></div>
-                <h2 id="detail-title">Loading...</h2>
-                <div class="detail-subtitle" id="detail-subtitle"></div>
-            </div>
-            <div class="header-spacer"></div>
+    <!-- Header -->
+    <div class="detail-header">
+        <a href="index.html" class="btn-ghost-large header-left">← Back</a>
+        <div class="header-center">
+            <div class="detail-eyebrow" id="detail-year"></div>
+            <h1 id="detail-title" class="detail-title">Loading...</h1>
+            <div class="detail-subtitle" id="detail-subtitle"></div>
         </div>
+        <div class="header-spacer"></div>
+    </div>
 
-        <div class="detail-body">
-            <div class="detail-main">
-                <div class="hero-media" id="detail-hero"></div>
-                <div class="media-columns" id="detail-images"></div>
-            </div>
+    <!-- Main Container -->
+    <div class="project-detail-container">
+        <!-- 1. Big Hero Video Section -->
+        <div class="hero-media-container" id="detail-hero"></div>
 
-            <div class="detail-sidebar">
-                <div class="sidebar-block">
-                    <div class="sidebar-label">Description</div>
-                    <div class="detail-description" id="detail-desc"></div>
+        <!-- 2. Divided Split Layout -->
+        <div class="project-split-layout">
+            <!-- Left Lateral Column: Description, Explications, Stack, Outcome, Learnings, Links -->
+            <div class="text-lateral-column">
+                <!-- Overview & Description -->
+                <div class="content-block" id="block-desc">
+                    <div class="block-label">Project Description</div>
+                    <div class="general-tagline" id="detail-tagline"></div>
+                    <div class="detail-text" id="detail-desc"></div>
                 </div>
-                <div class="sidebar-block">
-                    <div class="sidebar-label">Stack</div>
-                    <div id="detail-stack" class="stack-list"></div>
+
+                <!-- Tech Stack -->
+                <div class="content-block" id="block-stack">
+                    <div class="block-label">Tech Stack & Software</div>
+                    <div id="detail-stack" class="stack-tags"></div>
                 </div>
-                <div class="sidebar-block">
-                    <div class="sidebar-label">Outcome</div>
-                    <p id="detail-outcome"></p>
+
+                <!-- Outcome -->
+                <div class="content-block" id="block-outcome">
+                    <div class="block-label">Outcome & Impact</div>
+                    <div class="detail-text" id="detail-outcome"></div>
                 </div>
-                <div class="sidebar-block" id="detail-links-block">
-                    <div class="sidebar-label">Links</div>
+
+                <!-- Learnings & Difficulties -->
+                <div class="content-block" id="block-learnings">
+                    <div class="block-label">Learnings & Challenges</div>
+                    <div class="detail-text" id="detail-learnings"></div>
+                </div>
+
+                <!-- Links & Repos -->
+                <div class="content-block" id="block-links">
+                    <div class="block-label">Links & References</div>
                     <div id="detail-links" class="links-row"></div>
                 </div>
             </div>
+
+            <!-- Right Lateral Column: Images -->
+            <div class="gallery-lateral-column" id="gallery-section">
+                <div class="block-label" style="margin-bottom: 0;">Project Media & Screenshots</div>
+                <div id="detail-gallery">
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Footer Navigation (Previous Project / Next Project) -->
+        <div class="project-nav-footer">
+            <a href="#" id="prev-project-btn" class="nav-btn-link prev-link">
+                <span>←</span>
+                <div class="nav-btn-text">
+                    <span class="btn-label">PREVIOUS PROJECT</span>
+                    <span class="btn-title" id="prev-project-title"></span>
+                </div>
+            </a>
+            <a href="#" id="next-project-btn" class="nav-btn-link next-link">
+                <div class="nav-btn-text" style="text-align: right;">
+                    <span class="btn-label">NEXT PROJECT</span>
+                    <span class="btn-title" id="next-project-title"></span>
+                </div>
+                <span>→</span>
+            </a>
         </div>
     </div>
 
@@ -264,66 +497,74 @@
     <script>
         const params = new URLSearchParams(window.location.search);
         const projectId = params.get('id');
-        const p = (typeof PROJECTS !== 'undefined') ? PROJECTS.find(proj => proj.id === projectId) : null;
+        const currentIndex = (typeof PROJECTS !== 'undefined') ? PROJECTS.findIndex(proj => proj.id === projectId) : -1;
+        const p = currentIndex !== -1 ? PROJECTS[currentIndex] : null;
 
         if (p) {
             document.title = p.title + ' — Daniel Casadevall';
             document.getElementById('detail-title').textContent = p.title;
             document.getElementById('detail-subtitle').textContent = p.subtitle || '';
             document.getElementById('detail-year').textContent = p.year || '';
+
+            // 4-8 word General Description Tagline on top of description
+            document.getElementById('detail-tagline').innerHTML = p.desc || '';
+
+            // Full Description
             document.getElementById('detail-desc').innerHTML = p.fullDesc || '';
-            document.getElementById('detail-outcome').textContent = p.outcome || '';
 
+            // Tech Stack
             document.getElementById('detail-stack').innerHTML =
-                (p.tags || []).map(t => `<span class="tag software-icon">${t}</span>`).join('');
+                (p.tags || []).map(t => `<span class="stack-tag">${t}</span>`).join('');
 
+            // Outcome
+            document.getElementById('detail-outcome').innerHTML = p.outcome || '';
+
+            // Learnings & Difficulties
+            const learningsEl = document.getElementById('detail-learnings');
+            if (p.learnings) {
+                learningsEl.innerHTML = p.learnings;
+            } else {
+                learningsEl.innerHTML = `Overcame real-time performance constraints and optimized memory architecture through iterative testing and technical profiling.`;
+            }
+
+            // Big Hero Video
             const hero = document.getElementById('detail-hero');
-            const grid = document.getElementById('detail-images');
+            const gallery = document.getElementById('detail-gallery');
 
-            const sortedMedia = p.media ? [
-                ...p.media.filter(m => m.type === 'video'),
-                ...p.media.filter(m => m.type === 'image')
-            ] : [];
+            const videos = p.media ? p.media.filter(m => m.type === 'video') : [];
 
-            const renderPlaceholder = (n, type) => `
-                <div class="media-ph">
-                    <div>
-                        <div class="img-num">${String(n).padStart(2, '0')}</div>
-                        <span class="ph-type">${type}</span>
-                    </div>
-                </div>`;
+            // Primary hero media: first video, or first image if no video exists
+            const heroMedia = videos.length > 0 ? videos[0] : (p.media && p.media.length > 0 ? p.media[0] : null);
 
-            if (sortedMedia.length > 0) {
-                const m0 = sortedMedia[0];
-                hero.innerHTML = m0.src
-                    ? (m0.type === 'video'
-                        ? `<video src="${m0.src}" controls playsinline autoplay loop muted></video>`
-                        : `<img src="${m0.src}" alt="${p.title} 1">`)
-                    : renderPlaceholder(1, m0.type);
+            if (heroMedia) {
+                hero.innerHTML = heroMedia.type === 'video'
+                    ? `<video src="${heroMedia.src}" controls playsinline autoplay loop muted></video>`
+                    : `<img src="${heroMedia.src}" alt="${p.title}">`;
+            } else {
+                hero.style.display = 'none';
+            }
 
-                grid.innerHTML = sortedMedia.slice(1).map((m, j) => {
-                    const n = j + 2;
-                    if (!m.src) {
-                        return `<div class="media-item">${renderPlaceholder(n, m.type)}</div>`;
-                    }
+            // Gallery: all remaining media items (displayed on right lateral column)
+            const remainingMedia = p.media ? p.media.filter(m => m !== heroMedia) : [];
+            if (remainingMedia.length > 0) {
+                gallery.innerHTML = remainingMedia.map((m, idx) => {
                     if (m.type === 'video') {
-                        return `<div class="media-item"><video src="${m.src}" muted playsinline autoplay loop></video></div>`;
+                        return `<div class="gallery-item"><video src="${m.src}" controls muted playsinline loop></video></div>`;
                     }
-                    return `<div class="media-item clickable"><img src="${m.src}" alt="${p.title} ${n}"></div>`;
+                    return `<div class="gallery-item clickable"><img src="${m.src}" alt="${p.title} gallery ${idx + 1}"></div>`;
                 }).join('');
             } else {
-                hero.innerHTML = '';
-                grid.innerHTML = '';
+                document.getElementById('gallery-section').style.display = 'none';
             }
 
             // Links
-            const links = document.getElementById('detail-links');
+            const linksEl = document.getElementById('detail-links');
             let linkElements = [];
             if (p.links && p.links.length > 0) {
                 p.links.forEach(link => {
                     const label = link.label || (link.github ? 'GitHub' : 'Link');
                     const url = link.url || link.github || '#';
-                    linkElements.push(`<a href="${url}" target="_blank" class="btn-ghost">${label} ↗</a>`);
+                    linkElements.push(`<a href="${url}" target="_blank" class="btn-ghost-large">${label} ↗</a>`);
                 });
             }
             const linkTypes = [
@@ -335,15 +576,26 @@
             ];
             linkTypes.forEach(type => {
                 if (p[type.key]) {
-                    linkElements.push(`<a href="${p[type.key]}" target="_blank" class="btn-ghost">${type.label} ↗</a>`);
+                    linkElements.push(`<a href="${p[type.key]}" target="_blank" class="btn-ghost-large">${type.label} ↗</a>`);
                 }
             });
-            links.innerHTML = linkElements.join('');
+            linksEl.innerHTML = linkElements.join('');
             if (linkElements.length === 0) {
-                document.getElementById('detail-links-block').style.display = 'none';
+                document.getElementById('block-links').style.display = 'none';
             }
 
-            // ---------- Lightbox with zoom & pan ----------
+            // Navigation Footer (Previous / Next Project)
+            const prevIndex = (currentIndex - 1 + PROJECTS.length) % PROJECTS.length;
+            const nextIndex = (currentIndex + 1) % PROJECTS.length;
+            const prevProject = PROJECTS[prevIndex];
+            const nextProject = PROJECTS[nextIndex];
+
+            document.getElementById('prev-project-btn').href = `projectinfo.html?id=${prevProject.id}`;
+            document.getElementById('prev-project-title').textContent = prevProject.title;
+            document.getElementById('next-project-btn').href = `projectinfo.html?id=${nextProject.id}`;
+            document.getElementById('next-project-title').textContent = nextProject.title;
+
+            // Lightbox Modal Zoom & Pan
             const lightbox = document.getElementById('lightbox-modal');
             const lightboxImg = document.getElementById('lightbox-img');
             const lightboxWrapper = document.getElementById('lightbox-wrapper');
@@ -364,7 +616,7 @@
 
             const mediaImages = [
                 ...hero.querySelectorAll('img'),
-                ...grid.querySelectorAll('img')
+                ...gallery.querySelectorAll('img')
             ];
 
             mediaImages.forEach(imgEl => {
