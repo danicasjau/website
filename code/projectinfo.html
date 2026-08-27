@@ -55,11 +55,12 @@
 
         .detail-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 3.5rem;
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
             letter-spacing: 0.05em;
             margin: 0;
-            line-height: 1;
+            line-height: 1.1;
             color: var(--black);
+            word-break: break-word;
         }
 
         .detail-subtitle {
@@ -365,41 +366,76 @@
         }
 
         @media (max-width: 768px) {
+            .detail-header {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.6rem;
+                padding: 0.8rem 1rem;
+            }
+
+            .header-left {
+                align-self: flex-start;
+                font-size: 11px;
+                padding: 6px 14px;
+            }
+
+            .header-center {
+                width: 100%;
+                text-align: center;
+            }
+
+            .header-spacer {
+                display: none;
+            }
+
+            .detail-title {
+                font-size: clamp(1.6rem, 6.5vw, 2.2rem);
+                line-height: 1.1;
+            }
+
+            .detail-subtitle {
+                font-size: 0.9rem;
+                margin-top: 2px;
+            }
+
+            .project-detail-container {
+                padding: 1rem 1rem 3rem 1rem;
+            }
+
+            .hero-media-container {
+                margin: 0 auto 2rem auto;
+            }
+
+            .hero-media-container video,
+            .hero-media-container img {
+                max-height: 50vh;
+            }
+
+            .project-split-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            #detail-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            #detail-gallery>*:nth-child(3n + 1) {
+                grid-column: span 1;
+            }
+
             .project-nav-footer {
                 flex-direction: column;
                 align-items: stretch;
+                padding: 2rem 1rem 1rem 1rem;
+                margin-top: 3rem;
             }
 
             .nav-btn-link {
                 max-width: 100%;
                 justify-content: center !important;
             }
-
-            .detail-header {
-                padding: 1rem 1.5rem;
-            }
-
-            .detail-title {
-                font-size: 2.8rem;
-            }
-        }
-
-        #detail-gallery {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.8rem;
-        }
-
-        /* Target item 1, 4, 7, 10, etc. (every 3rd item starting from 1) */
-        #detail-gallery>*:nth-child(3n + 1) {
-            grid-column: span 2;
-        }
-
-        /* Ensures images fill their grid cells properly */
-        #detail-gallery>* {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
         }
     </style>
 </head>
